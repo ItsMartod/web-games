@@ -1,9 +1,9 @@
-# Clicker Academy
+# Web Game
 
 ⚠️ **This project is AI generated! Im only using it for school.** ⚠️
 
-Clicker Academy is a small clicker game for the browser. I created it for school to make things a bit less boring there.
+Here are some Web Games for school.
 
-Github Page: https://itsmartod.github.io/
+Clicker: https://bejewelled-dodol-56695e.netlify.app
 
-Netlify Page: https://bejewelled-dodol-56695e.netlify.app
+Clicker 2: https://stellular-khapse-583c6f.netlify.app
