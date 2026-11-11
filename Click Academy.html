@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Click Academy</title>
+<style>
+:root{--bg1:#dbe5ff;--bg2:#ffe0f0;--glass:rgba(255,255,255,.55);--bd:rgba(255,255,255,.85);--text:#171b2e;--mut:#5d6580;--acc:#6366f1;--acc2:#a855f7;--ok:#10b981;--sh:0 8px 32px rgba(70,80,160,.18);--dis:rgba(120,130,170,.2);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0a0c19;--bg2:#1c1036;--glass:rgba(255,255,255,.07);--bd:rgba(255,255,255,.14);--text:#f1f3ff;--mut:#9aa3c2;--acc:#818cf8;--acc2:#c084fc;--ok:#34d399;--sh:0 8px 32px rgba(0,0,0,.45);--dis:rgba(255,255,255,.1);color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#0a0c19;--bg2:#1c1036;--glass:rgba(255,255,255,.07);--bd:rgba(255,255,255,.14);--text:#f1f3ff;--mut:#9aa3c2;--ok:#34d399;--acc:#818cf8;--acc2:#c084fc;--sh:0 8px 32px rgba(0,0,0,.45);--dis:rgba(255,255,255,.1);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;animation:fl 16s ease-in-out infinite alternate}
+.b1{width:340px;height:340px;background:var(--acc);top:-80px;left:-80px}
+.b2{width:300px;height:300px;background:var(--acc2);bottom:-60px;right:-60px;animation-delay:-6s}
+.b3{width:220px;height:220px;background:#22d3ee;top:45%;left:55%;opacity:.3;animation-delay:-11s}
+@keyframes fl{to{transform:translate(60px,40px) scale(1.15)}}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:18px 16px 40px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+h1{margin:0;font-size:1.4rem;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.glass{background:var(--glass);border:1px solid var(--bd);border-radius:24px;box-shadow:var(--sh);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%)}
+#theme{width:42px;height:42px;border-radius:50%;font-size:1.1rem;cursor:pointer;color:var(--text)}
+button{font-family:inherit}
+.grid{display:grid;gap:16px}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr;align-items:start}}
+.hero{padding:22px;text-align:center}
+.big b{display:block;font-size:clamp(2.2rem,8vw,3.2rem);letter-spacing:-.03em;line-height:1.1}
+.big span{color:var(--mut);font-size:.85rem}
+.stage{position:relative;display:flex;justify-content:center;padding:26px 0}
+#btn{position:relative;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.5);color:#fff;font-size:1.3rem;font-weight:800;letter-spacing:.06em;cursor:pointer;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.55),transparent 40%),linear-gradient(135deg,var(--o1,var(--acc)),var(--o2,var(--acc2)));box-shadow:0 14px 40px rgba(99,102,241,.5),inset 0 -8px 20px rgba(0,0,0,.18);transition:transform .08s;animation:pulse 3s ease-in-out infinite;-webkit-tap-highlight-color:transparent;user-select:none}
+#btn small{display:block;font-weight:500;font-size:.8rem;letter-spacing:0;opacity:.9;margin-top:4px}
+#btn:active{transform:scale(.92)}
+@keyframes pulse{50%{box-shadow:0 14px 56px rgba(168,85,247,.65),inset 0 -8px 20px rgba(0,0,0,.18)}}
+.pop{position:absolute;pointer-events:none;font-weight:800;color:var(--acc);animation:up .9s ease-out forwards;text-shadow:0 1px 8px var(--glass)}
+.pop.c{color:#f59e0b;font-size:1.4rem}
+@keyframes up{to{transform:translateY(-80px);opacity:0}}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mini div{background:var(--glass);border:1px solid var(--bd);border-radius:16px;padding:10px}
+.mini b{display:block;font-size:1.15rem}
+.mini span{color:var(--mut);font-size:.75rem}
+.side{padding:14px}
+.tabs{display:flex;gap:6px;background:var(--dis);padding:5px;border-radius:16px;margin-bottom:12px}
+.tabs button{flex:1;border:0;background:none;color:var(--mut);padding:9px 4px;border-radius:12px;font-weight:600;cursor:pointer}
+.tabs button.on{background:var(--glass);color:var(--text);box-shadow:var(--sh)}
+.panel[hidden]{display:none}
+.up{display:flex;align-items:center;gap:12px;background:var(--glass);border:1px solid var(--bd);border-radius:16px;padding:11px;margin-bottom:9px}
+.up .i{font-size:1.6rem;width:40px;text-align:center}
+.up .t{flex:1;min-width:0}
+.up .t b{display:block;font-size:.95rem}
+.up .t small{color:var(--mut)}
+.buy,.go{border:0;border-radius:12px;padding:10px 13px;background:linear-gradient(135deg,var(--ok),#06b6d4);color:#fff;font-weight:700;cursor:pointer;white-space:nowrap}
+.buy:disabled,.go:disabled{background:var(--dis);color:var(--mut);cursor:not-allowed}
+.ach{opacity:.45;filter:grayscale(1)}
+.ach.done{opacity:1;filter:none}
+.bar{height:12px;border-radius:99px;background:var(--dis);overflow:hidden;margin:12px 0 6px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .3s}
+.panel p{color:var(--mut);font-size:.9rem;margin:6px 0}
+.panel h3{margin:4px 0}
+footer{text-align:center;margin-top:20px}
+footer button{background:var(--glass);border:1px solid var(--bd);color:var(--mut);border-radius:10px;padding:7px 14px;cursor:pointer}
+#toasts{position:fixed;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:8px;z-index:20;pointer-events:none}
+.toast{background:var(--glass);border:1px solid var(--bd);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:var(--sh);padding:10px 16px;border-radius:14px;font-weight:600;animation:ti .3s ease,to .4s ease 3s forwards}
+@keyframes ti{from{transform:translateY(20px);opacity:0}}
+@keyframes to{to{opacity:0;transform:translateY(10px)}}
+.gold{position:fixed;z-index:15;width:64px;height:64px;border-radius:50%;border:0;font-size:1.8rem;cursor:pointer;background:radial-gradient(circle at 30% 25%,#fff7c2,#fbbf24 60%,#f59e0b);box-shadow:0 0 30px #fbbf24;animation:gl 1.2s ease-in-out infinite alternate}
+@keyframes gl{to{transform:scale(1.18) rotate(8deg)}}
+.ring{position:absolute;pointer-events:none;width:236px;height:236px;top:50%;left:50%;margin:-118px 0 0 -118px;border-radius:50%;background:conic-gradient(var(--acc),transparent 30%,var(--acc2),transparent 70%,var(--acc));-webkit-mask:radial-gradient(circle,transparent 107px,#000 109px);mask:radial-gradient(circle,transparent 107px,#000 109px);animation:spin 8s linear infinite;opacity:.8}
+@keyframes spin{to{transform:rotate(360deg)}}
+.big b{background:linear-gradient(180deg,var(--text),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.combo{margin:0 0 14px}.combo .bar{margin:0 0 4px}.combo small{color:var(--mut);font-weight:600;font-size:.8rem}
+.fz{display:none;margin:0 auto 10px;width:max-content;padding:5px 12px;border-radius:99px;background:linear-gradient(90deg,#f59e0b,#ef4444);color:#fff;font-weight:800;font-size:.85rem}
+.tabs{overflow-x:auto;scrollbar-width:none}.tabs button{flex:0 0 auto;padding:9px 12px;font-size:.85rem}
+.cells{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.cell{aspect-ratio:1;border-radius:18px;border:1px solid var(--bd);background:var(--dis);font-size:2rem;cursor:pointer}
+.pt{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;background:var(--acc2);animation:pt .6s ease-out forwards}
+@keyframes pt{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+.sk{width:36px;height:36px;border-radius:50%;margin:auto}
+.up{transition:transform .15s}.up:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<main>
+<header><h1>🖱️ Click <span>Academy</span></h1><button id="theme" class="glass" aria-label="Toggle theme"></button></header>
+<div class="grid">
+<section class="glass hero">
+<div class="big"><b id="clicks">0</b><span>clicks</span></div>
+<div class="stage"><div class="ring"></div><button id="btn" aria-label="Click"><span>CLICK</span><small id="pc"></small></button></div>
+<div class="fz" id="fz"></div>
+<div class="combo"><div class="bar"><i id="cbar"></i></div><small id="ctxt">Combo ×1.00</small></div>
+<div class="mini"><div><b id="rate">0</b><span>per second</span></div><div><b id="crit">0%</b><span>crit chance</span></div><div><b id="mult">×1</b><span>rebirth bonus</span></div></div>
+</section>
+<section class="glass side">
+<nav class="tabs"><button class="on" data-t="ups">Upgrades</button><button data-t="q">Quests</button><button data-t="g">Games</button><button data-t="sk">Skins</button><button data-t="ach">Trophies</button><button data-t="reb">Rebirth</button></nav>
+<div id="p-ups" class="panel"></div>
+<div id="p-q" class="panel" hidden></div>
+<div id="p-g" class="panel" hidden></div>
+<div id="p-sk" class="panel" hidden></div>
+<div id="p-ach" class="panel" hidden></div>
+<div id="p-reb" class="panel" hidden>
+<h3>🔄 Rebirth</h3>
+<p>Reset your clicks and upgrades for a permanent +25% bonus to everything. Each rebirth needs twice as many clicks as the last.</p>
+<div class="bar"><i id="rbar"></i></div>
+<p id="rtxt"></p>
+<button id="rbtn" class="go">Rebirth</button>
+</div>
+</section>
+</div>
+<footer><button id="reset">Reset all progress</button></footer>
+</main>
+<div id="toasts"></div>
+<script>
+const UPS=[
+{id:'finger',i:'👆',n:'Strong Finger',d:'+1 per click',b:15,g:1.35,c:1},
+{id:'crit',i:'🎯',n:'Lucky Aim',d:'+2% crit chance (crit = ×5)',b:200,g:1.5,k:2,max:20},
+{id:'auto',i:'🤖',n:'Auto Clicker',d:'+1 per second',b:60,g:1.3,a:1},
+{id:'help',i:'🧑‍🎓',n:'Class Helper',d:'+6 per second',b:500,g:1.32,a:6},
+{id:'lab',i:'💻',n:'Computer Lab',d:'+40 per second',b:4000,g:1.34,a:40},
+{id:'boost',i:'⚡',n:'Mega Boost',d:'+25 per click',b:9000,g:1.5,c:25},
+{id:'fact',i:'🏭',n:'Click Factory',d:'+250 per second',b:30000,g:1.36,a:250}
+];
+const $=id=>document.getElementById(id);
+const root=document.documentElement;
+const DEF=()=>({clicks:0,run:0,life:0,taps:0,orbs:0,reb:0,buys:0,bugs:0,spins:0,best:0,spinAt:0,skin:0,skins:{0:1},quests:[],owned:{},ach:{}});let S=DEF();
+try{const r=localStorage.getItem('clickAcademy2');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+try{const t=localStorage.getItem('caTheme');if(t)root.dataset.theme=t}catch(e){}
+const own=u=>S.owned[u.id]||0;
+let frenzy=0,combo=0;const fz=()=>Date.now()<frenzy?3:1;const rb=()=>1+.25*S.reb;const mult=()=>rb()*fz();
+const per=()=>(1+UPS.reduce((a,u)=>a+(u.c||0)*own(u),0))*mult();
+const aps=()=>UPS.reduce((a,u)=>a+(u.a||0)*own(u),0)*mult();
+const critP=()=>UPS.reduce((a,u)=>a+(u.k||0)*own(u),0);
+const cost=u=>Math.ceil(u.b*Math.pow(u.g,own(u)));
+const need=()=>100000*Math.pow(2,S.reb);
+const ACH=[
+['First Click','Click once',()=>S.taps>=1],
+['Getting Warm','Click 100 times',()=>S.taps>=100],
+['Click Machine','Click 1,000 times',()=>S.taps>=1000],
+['Thousandaire','Earn 1K clicks',()=>S.life>=1e3],
+['Ten Thousand','Earn 10K clicks',()=>S.life>=1e4],
+['Hundred K','Earn 100K clicks',()=>S.life>=1e5],
+['Millionaire','Earn 1M clicks',()=>S.life>=1e6],
+['Automated','Reach 10 clicks per second',()=>aps()>=10],
+['Powerhouse','Reach 500 clicks per second',()=>aps()>=500],
+['Collector','Own 10 of one upgrade',()=>UPS.some(u=>own(u)>=10)],
+['Lucky','Catch a golden orb',()=>S.orbs>=1],
+['Reborn','Rebirth once',()=>S.reb>=1],
+['Bug Hunter','Squash 50 bugs',()=>S.bugs>=50],
+['Fashionista','Unlock a skin',()=>Object.keys(S.skins).length>1],
+['Gambler','Spin the lucky wheel',()=>S.spins>=1]
+];
+function fmt(n){const s=['','K','M','B','T'];let i=0;n=Math.floor(n);while(n>=1000&&i<4){n/=1000;i++}return i?(n<10?n.toFixed(2):n<100?n.toFixed(1):Math.floor(n))+s[i]:n.toLocaleString('en-US')}
+function save(){try{localStorage.setItem('clickAcademy2',JSON.stringify(S))}catch(e){}}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;$('toasts').appendChild(d);setTimeout(()=>d.remove(),3600)}
+function add(v){S.clicks+=v;S.run+=v;S.life+=v}
+function build(){
+$('p-ups').innerHTML=UPS.map(u=>`<div class="up"><div class="i">${u.i}</div><div class="t"><b>${u.n} <small>×<span id="n-${u.id}">0</span></small></b><small>${u.d}</small></div><button class="buy" id="b-${u.id}" data-id="${u.id}"></button></div>`).join('');
+$('p-ach').innerHTML=ACH.map((a,i)=>`<div class="up ach" id="a-${i}"><div class="i">🏆</div><div class="t"><b>${a[0]}</b><small>${a[1]}</small></div></div>`).join('');
+$('p-ups').onclick=e=>{const b=e.target.closest('button');if(!b)return;const u=UPS.find(x=>x.id===b.dataset.id),c=cost(u);if(S.clicks>=c&&!(u.max&&own(u)>=u.max)){S.clicks-=c;S.owned[u.id]=own(u)+1;S.buys++;save();render()}};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));['ups','q','g','sk','ach','reb'].forEach(t=>$('p-'+t).hidden=t!==b.dataset.t)});
+}
+const QP=[['Click 100 times','taps',100],['Click 300 times','taps',300],['Buy 5 upgrades','buys',5],['Buy 15 upgrades','buys',15],['Squash 10 bugs','bugs',10],['Squash 25 bugs','bugs',25],['Catch a golden star','orbs',1],['Spin the wheel','spins',1]];
+const SK=[['Aurora','#6366f1','#a855f7',0],['Sunset','#f97316','#ec4899',2500],['Ocean','#06b6d4','#3b82f6',10000],['Lime','#84cc16','#10b981',50000],['Gold','#fbbf24','#f59e0b',250000],['Galaxy','#1e1b4b','#7c3aed',1000000]];
+const WH=[['⏱️ +1 minute of clicks',60],['⏱️ +3 minutes of clicks',180],['⏱️ +10 minutes of clicks',600],['🔥 Frenzy ×3 for 30 seconds',0],['🍀 +5 minutes of clicks',300]];
+const qr=()=>Math.ceil(per()*150+aps()*90+100);
+function newQuests(){const used=S.quests.map(q=>q.i);while(S.quests.length<3){let i;do{i=Math.floor(Math.random()*QP.length)}while(used.includes(i));used.push(i);S.quests.push({i,s:S[QP[i][1]]})}}
+function skinApply(){const b=$('btn'),s=SK[S.skin];if(S.skin){b.style.setProperty('--o1',s[1]);b.style.setProperty('--o2',s[2])}else{b.style.removeProperty('--o1');b.style.removeProperty('--o2')}}
+function burst(e){const st=document.querySelector('.stage'),r=st.getBoundingClientRect();for(let i=0;i<8;i++){const d=document.createElement('i');d.className='pt';const a=Math.random()*6.28,l=50+Math.random()*50;d.style.cssText=`left:${e.clientX-r.left}px;top:${e.clientY-r.top}px;--x:${Math.cos(a)*l}px;--y:${Math.sin(a)*l}px`;st.appendChild(d);setTimeout(()=>d.remove(),600)}}
+let gs=0,gt=0,gl=null,gb=-1;
+const cells=()=>document.querySelectorAll('.cell');
+function pick(){cells().forEach(c=>c.textContent='');gb=Math.floor(Math.random()*9);cells()[gb].textContent='🐛'}
+function endG(){clearInterval(gl);gl=null;cells().forEach(c=>c.textContent='');gb=-1;const r=Math.ceil(gs*(per()*8+aps()*4+5));add(r);if(gs>S.best)S.best=gs;$('gstart').disabled=false;$('gtxt').textContent='';toast('🐛 '+gs+' bugs: +'+fmt(r));save()}
+function buildX(){
+if(S.quests.length<3)newQuests();
+$('p-q').innerHTML='<p>Complete quests for bonus clicks. A new quest appears after you claim one.</p>'+[0,1,2].map(n=>`<div class="up"><div class="i">📜</div><div class="t"><b id="qt${n}"></b><small id="qp${n}"></small></div><button class="buy" id="qb${n}" data-q="${n}">Claim</button></div>`).join('');
+$('p-q').onclick=e=>{const b=e.target.closest('button');if(!b)return;const n=+b.dataset.q,q=S.quests[n],d=QP[q.i];if(S[d[1]]-q.s>=d[2]){const r=qr();add(r);toast('📜 Quest done: +'+fmt(r));S.quests.splice(n,1);newQuests();save();render()}};
+$('p-g').innerHTML=`<h3>🐛 Bug Squash</h3><p>Squash as many bugs as you can in 20 seconds. Best: <b id="best">0</b></p><div class="cells">${[0,1,2,3,4,5,6,7,8].map(n=>`<button class="cell" data-c="${n}" aria-label="Cell ${n+1}"></button>`).join('')}</div><button class="go" id="gstart">Start</button> <span id="gtxt" style="margin-left:8px;color:var(--mut)"></span><h3 style="margin-top:22px">🎡 Lucky Wheel</h3><p>One free spin every 90 seconds.</p><div class="up"><div class="i">🎡</div><div class="t"><b id="wres">Ready?</b></div><button class="buy" id="wbtn">Spin</button></div>`;
+$('gstart').onclick=()=>{if(gl)return;gs=0;gt=20;$('gstart').disabled=true;pick();gl=setInterval(()=>{gt-=.6;$('gtxt').textContent=Math.max(0,Math.ceil(gt))+'s · '+gs+' bugs';if(gt<=0)endG();else pick()},600)};
+$('p-g').addEventListener('click',e=>{const c=e.target.closest('.cell');if(c&&gl&&+c.dataset.c===gb){gs++;S.bugs++;c.textContent='💥';gb=-1}});
+$('wbtn').onclick=()=>{if(Date.now()<S.spinAt)return;S.spinAt=Date.now()+90000;S.spins++;const w=WH[Math.floor(Math.random()*5)];$('wres').textContent=w[0];if(w[1]){const v=aps()*w[1]+per()*w[1]/2;add(v);toast('🎡 +'+fmt(v))}else{frenzy=Date.now()+30000;toast('🔥 Frenzy started!')}save();render()};
+$('p-sk').innerHTML='<p>Unlock orb skins with clicks.</p>'+SK.map((s,i)=>`<div class="up"><div class="i"><div class="sk" style="background:linear-gradient(135deg,${s[1]},${s[2]})"></div></div><div class="t"><b>${s[0]}</b></div><button class="buy" id="s-${i}" data-s="${i}"></button></div>`).join('');
+$('p-sk').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.s;if(S.skins[i]){S.skin=i}else if(S.clicks>=SK[i][3]){S.clicks-=SK[i][3];S.skins[i]=1;S.skin=i}else return;skinApply();save();render()};
+skinApply()}
+function renderX(){
+$('cbar').style.width=combo+'%';$('ctxt').textContent='Combo ×'+(1+combo/100).toFixed(2);
+const l=Math.ceil((frenzy-Date.now())/1000);$('fz').style.display=l>0?'block':'none';$('fz').textContent='🔥 FRENZY ×3 · '+l+'s';
+S.quests.forEach((q,n)=>{const d=QP[q.i],p=Math.min(d[2],S[d[1]]-q.s);$('qt'+n).textContent=d[0];$('qp'+n).textContent=p+' / '+d[2];const b=$('qb'+n);b.disabled=p<d[2];b.textContent='+'+fmt(qr())});
+SK.forEach((s,i)=>{const b=$('s-'+i);b.textContent=S.skin===i?'Equipped':S.skins[i]?'Equip':fmt(s[3]);b.disabled=!S.skins[i]&&S.clicks<s[3]});
+const sl=Math.ceil((S.spinAt-Date.now())/1000);$('wbtn').disabled=sl>0;$('wbtn').textContent=sl>0?sl+'s':'Spin';$('best').textContent=S.best}
+function render(){renderX();
+$('clicks').textContent=fmt(S.clicks);
+$('rate').textContent=fmt(aps());
+$('pc').textContent='+'+fmt(per())+' per click';
+$('crit').textContent=critP()+'%';
+$('mult').textContent='×'+rb().toFixed(2).replace(/\.?0+$/,'');
+UPS.forEach(u=>{$('n-'+u.id).textContent=own(u);const b=$('b-'+u.id),c=cost(u),mx=u.max&&own(u)>=u.max;b.textContent=mx?'MAX':fmt(c);b.disabled=mx||S.clicks<c});
+const n=need();$('rbar').style.width=Math.min(100,S.run/n*100)+'%';
+$('rtxt').textContent=fmt(S.run)+' / '+fmt(n)+' clicks this run';
+$('rbtn').disabled=S.run<n;
+ACH.forEach((a,i)=>{if(!S.ach[i]&&a[2]()){S.ach[i]=1;toast('🏆 '+a[0]);save()}$('a-'+i).classList.toggle('done',!!S.ach[i])});
+}
+$('btn').addEventListener('click',e=>{
+combo=Math.min(100,combo+5);let v=per()*(1+combo/100),c=Math.random()*100<critP();if(c)v*=5;burst(e);
+add(v);S.taps++;
+const st=document.querySelector('.stage'),r=st.getBoundingClientRect(),p=document.createElement('div');
+p.className='pop'+(c?' c':'');p.textContent=(c?'CRIT ':'+')+fmt(v);
+p.style.left=(e.clientX-r.left-16)+'px';p.style.top=(e.clientY-r.top-24)+'px';
+st.appendChild(p);setTimeout(()=>p.remove(),900);render()});
+setInterval(()=>{const a=aps();if(a)add(a/10);combo=Math.max(0,combo-2);render()},100);
+setInterval(save,3000);
+function spawn(){
+setTimeout(()=>{const g=document.createElement('button');g.className='gold';g.textContent='⭐';g.setAttribute('aria-label','Golden bonus');
+g.style.left=(8+Math.random()*75)+'vw';g.style.top=(15+Math.random()*60)+'vh';
+g.onclick=()=>{const v=aps()*45+per()*77;add(v);S.orbs++;toast('⭐ Bonus +'+fmt(v));g.remove();render()};
+document.body.appendChild(g);setTimeout(()=>g.remove(),9000);spawn()},30000+Math.random()*40000)}
+function eff(){return root.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+function icon(){$('theme').textContent=eff()==='dark'?'☀️':'🌙'}
+$('theme').onclick=()=>{root.dataset.theme=eff()==='dark'?'light':'dark';try{localStorage.setItem('caTheme',root.dataset.theme)}catch(e){}icon()};
+function arm(b,fn){let t;const o=b.textContent;b.addEventListener('click',()=>{if(b.dataset.arm){clearTimeout(t);delete b.dataset.arm;b.textContent=o;fn()}else{b.dataset.arm=1;b.textContent='Click again to confirm';t=setTimeout(()=>{delete b.dataset.arm;b.textContent=o},3000)}})}
+arm($('rbtn'),()=>{if(S.run<need())return;S.reb++;S.clicks=0;S.run=0;S.owned={};save();render();toast('🔄 Reborn! Bonus is now ×'+rb())});
+arm($('reset'),()=>{S=DEF();newQuests();save();skinApply();render()});
+buildX();build();icon();render();spawn();
+</script>
+</body>
+</html>
